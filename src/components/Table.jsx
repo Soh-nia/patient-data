@@ -23,7 +23,7 @@ const Table = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3500/api/patients");
+      const response = await axios.get("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients");
       setOverallData(response.data);
     } catch (error) {
       console.error("Error fetching overall data:", error);
@@ -43,7 +43,7 @@ const Table = () => {
 
   const handleFilter = async (fromDate, toDate) => {
     try {
-      const response = await axios.get("http://localhost:3500/api/patients/filter", {
+      const response = await axios.get("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients/filter", {
         params: {
           fromDate,
           toDate,

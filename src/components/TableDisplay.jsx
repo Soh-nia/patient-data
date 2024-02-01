@@ -67,7 +67,7 @@ const [editingPatient, setEditingPatient] = useState(null);
 
   const handleDelete = async (index) => {
     try {
-      const response = await axios.delete(`http://localhost:3500/api/patients/${data[index]._id}`);
+      const response = await axios.delete(`https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients/${data[index]._id}`);
       if (response.status === 200) {
         const updatedData = data.filter((_, i) => i !== index);
         setData(updatedData);
@@ -122,7 +122,7 @@ const [editingPatient, setEditingPatient] = useState(null);
                   <td>{user.refPhysician}</td>
                   <td>{user.institution}</td>
                   <td>{user.assignment}</td>
-                  <td>{user.status}</td>
+                  <td className="status">{user.status}</td>
                   <td>{formatDateString(user.upload_date)}</td>
                   <td>
                     <div className="dropdown">

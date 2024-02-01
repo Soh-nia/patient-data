@@ -16,17 +16,16 @@ const UploadButton = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3500/api/patients", {
+      await axios.post("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients", {
         patient: patient,
         study: study,
         studyDate,
         refPhysician: refPhysician,
         institution: institution,
         assignment: assignment,
-        status: status,
+        // status: status,
       });
       toast("Form submitted successfully!");
-      console.log("Form submitted successfully!");
       setTimeout(() => {
         window.location.reload();
       }, 3000);

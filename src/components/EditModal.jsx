@@ -27,7 +27,7 @@ const EditModal = ({ editingPatient, onClose, onEditSuccess }) => {
 
   const handleSave = async () => {
     try {
-      await axios.put(`http://localhost:3500/api/patients/${editingPatient._id}`, editedData);
+      await axios.put(`https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients/${editingPatient._id}`, editedData);
       onEditSuccess();
       onClose();
       toast("Edit saved successfully!");

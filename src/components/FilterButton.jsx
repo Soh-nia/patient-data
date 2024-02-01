@@ -14,7 +14,7 @@ const FilterButton = ({ onFilter }) => {
     }
 
     try {
-      const response = await axios.get("http://localhost:3500/api/patients/filter", {
+      const response = await axios.get("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients/filter", {
         params: {
           fromDate,
           toDate,

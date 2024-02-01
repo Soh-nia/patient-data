@@ -11,7 +11,7 @@ const SearchBar = ({ onSearch }) => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        "http://localhost:3500/api/patients/search",
+        "https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients/search",
         {
           params: { searchQuery: searchInput },
         }

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
   return (
-    <div className="App">
+    <div className="container my-5 align-item-center justify-content-center">
         < Table />
         <ToastContainer />
     </div>

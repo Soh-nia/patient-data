@@ -1,0 +1,64 @@
+.table-container {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.btn {
+  background-color: black;
+  color: #f2f2f2;
+}
+
+.btn:hover {
+  border-color: black;
+}
+
+.action-btn {
+  background-color: #fff;
+  color: black;
+  border: none;
+outline: none;
+}
+
+.action-btn:hover,
+.action-btn:active {
+border: none;
+outline: none;}
+
+.custom-dropdown-button::after {
+  content: "\2026"; /* Unicode character for three dots (ellipsis) */
+  font-family: "FontAwesome"; /* Specify the font-family for the ellipsis icon */
+  font-size: 20px; /* Adjust the font size as needed */
+}
+
+.filterDate{
+  font-size: 25px;
+  font-weight: 400;
+  color: black;
+}
+
+label {
+  display: block;
+}
+input {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 5px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}

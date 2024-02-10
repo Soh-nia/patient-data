@@ -61,7 +61,15 @@ input {
   background-color: #fff;
   padding: 5px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  outline: none;
 }
+/*
+input:hover,
+input:active {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  outline: none;
+} */
+
 .status{
   color: rgb(23, 131, 231);
 }

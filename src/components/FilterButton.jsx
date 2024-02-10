@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const FilterButton = ({ onFilter }) => {
+const FilterButton = ({ onFilter, isFilterModalOpen, setFilterModalOpen }) => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
 
@@ -13,26 +13,18 @@ const FilterButton = ({ onFilter }) => {
       return;
     }
 
-    try {
-      const response = await axios.get("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients/filter", {
-        params: {
-          fromDate,
-          toDate,
-        },
-      });
-      onFilter(response.data);
-    } catch (error) {
-      console.error("Error filtering data:", error);
-    }
+    onFilter(fromDate, toDate);  // Trigger the onFilter callback with date parameters
   };
+
 
   const handleReset = async () => {
     try {
-      const response = await axios.get("http://localhost:3500/api/patients");
+      const response = await axios.get("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients");
       onFilter(response.data);
       // Reset date inputs
       setFromDate("");
       setToDate("");
+      window.location.reload();
     } catch (error) {
       console.error("Error fetching all data:", error);
     }
@@ -45,16 +37,17 @@ const FilterButton = ({ onFilter }) => {
         className="btn"
         data-bs-toggle="modal"
         data-bs-target="#filterModal"
+        onClick={() => setFilterModalOpen(true)}
       >
         By Date
       </button>
 
       <div
-        className="modal fade"
+        className={`modal fade ${isFilterModalOpen ? 'show' : ''}`}
         id="filterModal"
         tabIndex="-1"
         aria-labelledby="filterModalLabel"
-        aria-hidden="true"
+        aria-hidden={!isFilterModalOpen}
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
@@ -114,16 +107,6 @@ const FilterButton = ({ onFilter }) => {
                 </div>
               </form>
             </div>
-
-            {/* <div className="modal-footer">
-              <button
-                type="button"
-                className="btn"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div> */}
           </div>
         </div>
       </div>

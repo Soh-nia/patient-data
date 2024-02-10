@@ -16,15 +16,18 @@ const UploadButton = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients", {
-        patient: patient,
-        study: study,
-        studyDate,
-        refPhysician: refPhysician,
-        institution: institution,
-        assignment: assignment,
-        // status: status,
-      });
+      await axios.post(
+        "https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients",
+        {
+          patient: patient,
+          study: study,
+          studyDate,
+          refPhysician: refPhysician,
+          institution: institution,
+          assignment: assignment,
+          // status: status,
+        }
+      );
       toast("Form submitted successfully!");
       setTimeout(() => {
         window.location.reload();
@@ -67,13 +70,16 @@ const UploadButton = () => {
               ></button>
             </div>
             <div className="modal-body">
+
               <form onSubmit={handleSubmit}>
-                <div className="row g-2 my-3">
-                  <div className="col-6 mb-3">
-                    <label htmlFor="patient_name">Patient Name</label>
+                <div className="row g-3 mb-3">
+                  <div className="col-md-6">
+                    <label htmlFor="patient_name" className="form-label">
+                      Patient Name
+                    </label>
                     <input
                       type="text"
-                      name="patient_name"
+                      className="form-control"
                       id="patient_name"
                       placeholder="Patient name"
                       value={patient}
@@ -81,11 +87,13 @@ const UploadButton = () => {
                       required
                     />
                   </div>
-                  <div className="col-6 mb-3">
-                    <label htmlFor="study">Study</label>
+                  <div className="col-md-6">
+                    <label htmlFor="study" className="form-label">
+                      Study
+                    </label>
                     <input
                       type="text"
-                      name="study"
+                      className="form-control"
                       id="study"
                       placeholder="Study"
                       aria-label="Study"
@@ -94,28 +102,27 @@ const UploadButton = () => {
                       required
                     />
                   </div>
-                  <div className="row mb-3">
-                    <label htmlFor="study_date" className="col-12">
+                  <div className="col-12">
+                    <label htmlFor="study_date" className="form-label">
                       Study Date
                     </label>
                     <input
-                      className="col-12"
                       type="date"
-                      name="study_date"
+                      className="form-control"
                       id="study_date"
-                      placeholder="Study Date"
                       aria-label="Study Date"
                       value={studyDate}
                       onChange={(e) => setStudyDate(e.target.value)}
                       required
                     />
                   </div>
-
-                  <div className="col-6 mb-3">
-                    <label htmlFor="ref_physician">Ref Physician</label>
+                  <div className="col-md-6">
+                    <label htmlFor="ref_physician" className="form-label">
+                      Ref Physician
+                    </label>
                     <input
                       type="text"
-                      name="ref_physician"
+                      className="form-control"
                       id="ref_physician"
                       placeholder="Ref Physician"
                       aria-label="Ref Physician"
@@ -123,12 +130,13 @@ const UploadButton = () => {
                       onChange={(e) => setRefPhysician(e.target.value)}
                     />
                   </div>
-
-                  <div className="col-6 mb-3">
-                    <label htmlFor="institution">Institution</label>
+                  <div className="col-md-6">
+                    <label htmlFor="institution" className="form-label">
+                      Institution
+                    </label>
                     <input
                       type="text"
-                      name="institution"
+                      className="form-control"
                       id="institution"
                       placeholder="Institution"
                       aria-label="Institution"
@@ -136,12 +144,13 @@ const UploadButton = () => {
                       onChange={(e) => setInstitution(e.target.value)}
                     />
                   </div>
-
-                  <div className="col-6 mb-3">
-                    <label htmlFor="assignment">Assignment</label>
+                  <div className="col-md-6">
+                    <label htmlFor="assignment" className="form-label">
+                      Assignment
+                    </label>
                     <input
                       type="email"
-                      name="assignment"
+                      className="form-control"
                       id="assignment"
                       placeholder="jjc@hospital2.com"
                       aria-label="Assignment"
@@ -150,12 +159,13 @@ const UploadButton = () => {
                       required
                     />
                   </div>
-
-                  <div className="col-6 mb-3">
-                    <label htmlFor="status">Status</label>
+                  <div className="col-md-6">
+                    <label htmlFor="status" className="form-label">
+                      Status
+                    </label>
                     <input
                       type="text"
-                      name="status"
+                      className="form-control"
                       id="status"
                       placeholder="Status"
                       aria-label="Status"
@@ -171,10 +181,6 @@ const UploadButton = () => {
                 </div>
               </form>
             </div>
-            {/* <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> */}
           </div>
         </div>
       </div>

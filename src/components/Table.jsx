@@ -8,14 +8,13 @@ import SearchBar from "./SearchBar";
 import UploadButton from "./UploadButton";
 import axios from "axios";
 
-
 const Table = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [overallData, setOverallData] = useState([]);
-
+  const [isFilterModalOpen, setFilterModalOpen] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -23,7 +22,9 @@ const Table = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients");
+      const response = await axios.get(
+        "https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients"
+      );
       setOverallData(response.data);
     } catch (error) {
       console.error("Error fetching overall data:", error);
@@ -42,14 +43,29 @@ const Table = () => {
   };
 
   const handleFilter = async (fromDate, toDate) => {
+    const formatDateToISOString = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}T00:00:00.000Z`;
+    };
+
+    const formattedFromDate = formatDateToISOString(new Date(fromDate));
+    const formattedToDate = formatDateToISOString(new Date(toDate));
+
     try {
-      const response = await axios.get("https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients/filter", {
-        params: {
-          fromDate,
-          toDate,
-        },
-      });
+      const response = await axios.get(
+        "https://patient-table-data-dd724b9d8b7d.herokuapp.com/api/patients/filter",
+        {
+          params: {
+            fromDate: formattedFromDate,
+            toDate: formattedToDate,
+          },
+        }
+      );
       setFilteredData(response.data);
+      setFilterModalOpen(false);
     } catch (error) {
       console.error("Error filtering data:", error);
     }
@@ -65,7 +81,11 @@ const Table = () => {
                 selectedRows={selectedRows}
                 onClick={() => handleSelectedAction()}
               />
-              <FilterButton onFilter={handleFilter} />
+              <FilterButton
+                onFilter={handleFilter}
+                isFilterModalOpen={isFilterModalOpen}
+                setFilterModalOpen={setFilterModalOpen}
+              />
               <RunButton />
             </div>
 
